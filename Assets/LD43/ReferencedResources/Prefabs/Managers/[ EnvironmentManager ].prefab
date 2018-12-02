@@ -36,7 +36,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4206987406511880}
   - component: {fileID: 61508096780163284}
-  m_Layer: 8
+  - component: {fileID: 114691822697303636}
+  m_Layer: 0
   m_Name: ScreenEdge-Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +142,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1323199804630248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -40, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4229508447555060}
@@ -277,7 +278,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -50}
@@ -329,8 +330,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce039e17c7c4ba458a7c6dbf66943cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tilePrefab: {fileID: 1242893217923158, guid: c359e4fcad252c343aceaee493739e7a,
-    type: 2}
+  _environmentData: {fileID: 11400000, guid: ec26e8e0210256d41a5283914037927d, type: 2}
   _scrollParent: {fileID: 4349215289782574}
   _scrollSpeed: 64
   _numActiveTiles: 10
+--- !u!114 &114691822697303636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1323199804630248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9976a2afaa909449a744b9a278ca5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: 0}
+  _kills: 1

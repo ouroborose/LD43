@@ -4,7 +4,7 @@ using UnityEngine;
 using VuLib;
 
 public class EnvironmentManager : Singleton<EnvironmentManager> {
-    public GameObject _tilePrefab;
+    public EnvironmentData _environmentData;
 
     public Transform _scrollParent;
 
@@ -21,7 +21,14 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
         base.Awake();
         for (int i = 0; i < _numActiveTiles; ++i)
         {
-            AddTile();
+            if(i < 5)
+            {
+                AddTile(_environmentData._emptyTilePrefab);
+            }
+            else
+            {
+                AddRandomTile();
+            }
         }
 
         _scrollThreshold = -_tiles[0]._height * 2;
@@ -32,9 +39,9 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
         UpdateEnvironmentScrolling();
     }
 
-    protected void AddTile()
+    protected void AddTile(GameObject prefab)
     {
-        GameObject tileObj = Instantiate(_tilePrefab, _scrollParent);
+        GameObject tileObj = Instantiate(prefab, _scrollParent);
         BaseEnvironmentTile tile = tileObj.GetComponent<BaseEnvironmentTile>();
 
         if(_lastTile != null)
@@ -44,6 +51,12 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
 
         _lastTile = tile;
         _tiles.Add(tile);
+    }
+
+
+    protected void AddRandomTile()
+    {
+        AddTile(_environmentData.GetRandomTilePrefab());
     }
 
     protected void UpdateEnvironmentScrolling()
@@ -58,10 +71,11 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
             _tiles.Remove(firstTile);
             Destroy(firstTile.gameObject);
 
-            AddTile();
+            AddRandomTile();
             _scrollThreshold -= _tiles[0]._height;
         }
 
         _scrollParent.localPosition = scrollPos;
     }
+
 }

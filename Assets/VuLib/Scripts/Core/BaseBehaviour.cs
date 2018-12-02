@@ -7,7 +7,7 @@ namespace VuLib
     public class BaseBehaviour<T> : MonoBehaviour where T:BaseMain<T>
     {
         protected bool _initialized = false;
-        protected bool _isAlive = false;
+        public bool _isAlive { get; protected set; }
         protected bool _isDestroyed = false;
 
         protected void Awake()

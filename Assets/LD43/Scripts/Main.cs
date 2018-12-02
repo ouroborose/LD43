@@ -55,7 +55,7 @@ public class Main : BaseMain<Main>
         // spawn people
         for(int i = 0; i < _numStartingPeople; ++i)
         {
-            SpawnPerson(new Vector3(Random.Range(-100, 100), Random.Range(0, 100), 0));
+            SpawnPerson(new Vector3(Random.Range(-100, 100), Random.Range(100, 200), 0));
         }
     }
 
@@ -156,6 +156,12 @@ public class Main : BaseMain<Main>
         for (int i = 0; i < _people.Count; ++i)
         {
             BasePerson person = _people[i];
+
+            if (!person._isAlive)
+            {
+                continue;
+            }
+
             Vector3 center = person.transform.position;
             center.y += 16; // offset to center of person
             float sqrDist = Vector3.SqrMagnitude(center - _mouseWorldPos);

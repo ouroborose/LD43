@@ -17,7 +17,10 @@ public class BaseObject : BaseBehaviour<Main> {
             _sprite = GetComponentInChildren<SpriteRenderer>();
         }
 
-        _originalColor = _sprite.color;
+        if(_sprite != null)
+        {
+            _originalColor = _sprite.color;
+        }
         TriggerRevive();
     }
 
@@ -30,7 +33,10 @@ public class BaseObject : BaseBehaviour<Main> {
 
     protected virtual void UpdateSortingOrder()
     {
-        _sprite.sortingOrder = Mathf.RoundToInt(transform.position.y) * -1;
+        if(_sprite != null)
+        {
+            _sprite.sortingOrder = Mathf.RoundToInt(transform.position.y) * -1;
+        }
     }
 
     public void ResetColor()
@@ -41,5 +47,11 @@ public class BaseObject : BaseBehaviour<Main> {
     public void SetColor(Color c)
     {
         _sprite.color = c;
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        gameObject.SetActive(false);
     }
 }
