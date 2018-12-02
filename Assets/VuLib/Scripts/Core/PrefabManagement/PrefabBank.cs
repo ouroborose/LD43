@@ -8,7 +8,7 @@ using UnityEditor;
 
 namespace VuLib
 {
-    [CreateAssetMenu(fileName = "PrefabBank", menuName = "Belong/Data/PrefabBank")]
+    [CreateAssetMenu(fileName = "PrefabBank", menuName = "LD43/Data/PrefabBank")]
     public class PrefabBank : BaseBankScriptableObject
     {
         public bool _updateIds = true;
@@ -16,15 +16,15 @@ namespace VuLib
         public List<BasePrefabIdentifier> _prefabs = new List<BasePrefabIdentifier>();
 
 #if UNITY_EDITOR
-        [MenuItem("Belong/Populate All PrefabBanks")]
+        [MenuItem("LD43/Populate All PrefabBanks")]
         public static void RepopulateAll()
         {
-            RepopulateBanks<PrefabBank>("Belong/BelongGame/ReferencedResources/Data/PrefabBanks");
+            RepopulateBanks<PrefabBank>("LD43/ReferencedResources/Data/PrefabBanks");
         }
 
         public override string GetRootDataPath()
         {
-            return "Belong/BelongGame/ReferencedResources/Prefabs";
+            return "LD43/ReferencedResources/Prefabs";
         }
 
         public override void ClearBank()
