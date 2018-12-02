@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class BaseEnvironmentTile : BaseObject {
 
+    public const float SPRITE_ASSET_SCALE_ADJUSTOR = 2.0f;
+
     public GameObject[] _obstaclePrefabs;
     public int _minObstacles = 0;
     public int _maxObstacles = 10;
 
 
-    public float _height { get { return _sprite.sprite.rect.height; } }
+    public float _height { get { return _sprite.sprite.rect.height * SPRITE_ASSET_SCALE_ADJUSTOR; } }
 
     protected override void UpdateSortingOrder()
     {

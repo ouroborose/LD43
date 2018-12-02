@@ -132,16 +132,26 @@ public class Main : BaseMain<Main>
         }
 
         Vector3 center = Vector3.zero;
+        int livingCount = 0;
         for (int i = 0; i < _selectedPeople.Count; ++i)
         {
+            if(!_selectedPeople[i]._isAlive)
+            {
+                continue;
+            }
+
             _selectedPeople[i].MoveTowards(_mouseWorldPos);
             center += _selectedPeople[i].transform.position;
+            livingCount++;
         }
 
-        center /= _selectedPeople.Count;
+        if(livingCount > 0)
+        {
+            center /= livingCount;
 
-        _movementLine.SetPosition(0, _mouseWorldPos);
-        _movementLine.SetPosition(1, center);
+            _movementLine.SetPosition(0, _mouseWorldPos);
+            _movementLine.SetPosition(1, center);
+        }
     }
 
     protected void UpdatePeopleSelection()

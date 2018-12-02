@@ -14,7 +14,6 @@ public class BaseObstacle : BaseObject {
             if(person != null)
             {
                 person.TriggerDeath();
-                Debug.Log("killed");
             }
         }
     }

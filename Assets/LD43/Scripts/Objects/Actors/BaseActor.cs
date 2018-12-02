@@ -40,6 +40,11 @@ public class BaseActor : BaseObject {
 
     public void UpdateMovement()
     {
+        if(_rigidbody == null)
+        {
+            return;
+        }
+
         Vector3 vel = _rigidbody.velocity;
 
         Debug.DrawRay(transform.position, vel);

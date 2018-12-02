@@ -16,3 +16,6 @@ MonoBehaviour:
   _tileData:
   - _prefab: {fileID: 1242893217923158, guid: c359e4fcad252c343aceaee493739e7a, type: 2}
   - _prefab: {fileID: 1242893217923158, guid: ae081c123c31e6845bcc56a9e23f8585, type: 2}
+  - _prefab: {fileID: 1640262792992832, guid: a2ebed46cd292df45ad631a24220bb60, type: 2}
+  - _prefab: {fileID: 1075456342928378, guid: a2e0526b18398e240bc5ef279c485a62, type: 2}
+  - _prefab: {fileID: 1997119921384624, guid: 59af97beecaafcd44aa87686fb1989d2, type: 2}

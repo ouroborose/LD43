@@ -295,8 +295,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprite: {fileID: 212178002551455134}
   _rigidbody: {fileID: 0}
-  _maxSpeed: 50
-  _movementForce: 5
+  _maxSpeed: 100
+  _movementForce: 10
   _selectionIndicator: {fileID: 114824476780658064}
 --- !u!120 &120530502957671920
 LineRenderer:

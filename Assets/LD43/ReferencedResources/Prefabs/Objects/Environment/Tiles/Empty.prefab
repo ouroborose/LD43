@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4199106526572792}
   - component: {fileID: 114339177358421886}
   m_Layer: 0
-  m_Name: EmptyEnvironmentTile
+  m_Name: Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,6 +82,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sprite: {fileID: 212035252298048564}
+  _obstaclePrefabs: []
+  _minObstacles: 0
+  _maxObstacles: 0
 --- !u!212 &212035252298048564
 SpriteRenderer:
   m_ObjectHideFlags: 1

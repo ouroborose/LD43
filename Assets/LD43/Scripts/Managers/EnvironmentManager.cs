@@ -21,7 +21,7 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
         base.Awake();
         for (int i = 0; i < _numActiveTiles; ++i)
         {
-            if(i < 5)
+            if(i < 2)
             {
                 AddTile(_environmentData._emptyTilePrefab);
             }
