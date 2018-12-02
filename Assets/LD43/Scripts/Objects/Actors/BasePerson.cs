@@ -28,6 +28,6 @@ public class BasePerson : BaseActor {
     {
         transform.parent = EnvironmentManager.Instance._scrollParent;
         Destroy(_rigidbody);
-        transform.DOScale(0, 0.5f).OnComplete(base.Die);
+        transform.DOScale(0, 1.0f).OnComplete(base.Die);
     }
 }

@@ -115,12 +115,11 @@ public class Main : BaseMain<Main>
 
     protected void StopPeopleMovement()
     {
-        /*
+        
         for (int i = 0; i < _selectedPeople.Count; ++i)
         {
-            _selectedPeople[i].ResetColor();
+            _selectedPeople[i].Stop();
         }
-        */
     }
     
     protected void UpdatePeopleMovement()
