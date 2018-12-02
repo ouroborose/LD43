@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseObsticle : BaseObject {
+public class BaseObstacle : BaseObject {
     
 }
