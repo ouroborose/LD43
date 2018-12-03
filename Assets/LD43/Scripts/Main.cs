@@ -15,11 +15,14 @@ public class Main : BaseMain<Main>
     public float _radiusChangeDelta = 5.0f;
     public float _minSelectionRadius = 20.0f;
     public float _maxSelectionRadius = 100.0f;
+    public float _speedMultiplierDist = 100.0f;
     public SelectionIndicator _selectionIndicator;
     public LineRenderer _movementLine;
 
     public Color _candidateColor = Color.cyan;
     public Color _movmentColor = Color.green;
+
+    public Transform _destructionRocks;
 
     public TextMeshPro _instructionText;
     protected float _instructionTextTimer = 0.0f;
@@ -148,6 +151,7 @@ public class Main : BaseMain<Main>
     {
         _gamePhase = GamePhase.Finale;
         _sacrificeCount = 0;
+        _destructionRocks.DOMoveY(-100, 1.0f, true).SetEase(Ease.InBack);
         EventManager.OnFinale.Dispatch();
     }
 
@@ -225,6 +229,7 @@ public class Main : BaseMain<Main>
             if(!_firstClickCompleted)
             {
                 _firstClickCompleted = true;
+                _destructionRocks.DOMoveY(0, 1.0f, true).SetEase(Ease.OutBack);
             }
             _movementLine.gameObject.SetActive(true);
         }
@@ -253,13 +258,17 @@ public class Main : BaseMain<Main>
         int livingCount = 0;
         for (int i = 0; i < _selectedPeople.Count; ++i)
         {
-            if(!_selectedPeople[i]._isAlive)
+            BasePerson person = _selectedPeople[i];
+            if(!person._isAlive)
             {
                 continue;
             }
 
-            _selectedPeople[i].MoveTowards(_mouseWorldPos);
-            center += _selectedPeople[i].transform.position;
+            float dist = Vector3.Distance(person.transform.position, _mouseWorldPos);
+            float speedMultiplier = Mathf.Max(0.5f, dist / _speedMultiplierDist);
+
+            person.MoveTowards(_mouseWorldPos, speedMultiplier);
+            center += person.transform.position;
             livingCount++;
         }
 
