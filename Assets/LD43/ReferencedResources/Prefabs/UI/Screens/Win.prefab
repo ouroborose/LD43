@@ -258,7 +258,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "Congratulations!\n\n{0}\n\nSacrifices where made to the Great Deity. \n\nThe
+  m_text: "Congratulations!\n\n{0}\n\nSacrifices weere made to the Great Deity. \n\nThe
     world is safe for another {0} years."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4bc48d44f9e5b9943ac86b59a94afc05, type: 2}
@@ -336,11 +336,11 @@ MonoBehaviour:
     lineCount: 11
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

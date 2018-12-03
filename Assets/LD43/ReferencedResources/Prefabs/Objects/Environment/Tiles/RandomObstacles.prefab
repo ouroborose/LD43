@@ -85,6 +85,7 @@ MonoBehaviour:
   _obstaclePrefabs:
   - {fileID: 1608453269813422, guid: 5d6c95d735b74734eb425d79c7792878, type: 2}
   - {fileID: 1720322078516372, guid: 3c9afb0b279f5b245a842f9253d0947a, type: 2}
+  - {fileID: 1608453269813422, guid: ae882fe6166a14fe58c59a1a391d5fbc, type: 2}
   _minObstacles: 1
   _maxObstacles: 6
 --- !u!212 &212035252298048564
