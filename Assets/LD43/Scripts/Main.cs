@@ -24,6 +24,9 @@ public class Main : BaseMain<Main>
 
     public Transform _destructionRocks;
 
+    public AudioClip[] _deathSounds;
+    public AudioClip _spawnSound;
+
     public TextMeshPro _instructionText;
     protected float _instructionTextTimer = 0.0f;
 
@@ -214,6 +217,8 @@ public class Main : BaseMain<Main>
     {
         _people.Remove(person);
         _selectedPeople.Remove(person);
+
+        AudioManager.Instance.PlayOneShot(_deathSounds[Random.Range(0, _deathSounds.Length)]);
         _sacrificeCount++;
     }
 

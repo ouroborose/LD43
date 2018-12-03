@@ -267,6 +267,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114923259405357810, guid: 4dfa614f76225c74ca218c98576d7bfc,
+        type: 2}
+      propertyPath: _deathSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4087127575326846, guid: 4dfa614f76225c74ca218c98576d7bfc, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -304,6 +309,21 @@ Prefab:
       propertyPath: _instructionText
       value: 
       objectReference: {fileID: 755420252}
+    - target: {fileID: 114923259405357810, guid: 4dfa614f76225c74ca218c98576d7bfc,
+        type: 2}
+      propertyPath: _deathSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3d497668bdc7a9e47b0bc02c98837c6c, type: 3}
+    - target: {fileID: 114923259405357810, guid: 4dfa614f76225c74ca218c98576d7bfc,
+        type: 2}
+      propertyPath: _deathSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e61992966603544880dd54a986c6625, type: 3}
+    - target: {fileID: 114923259405357810, guid: 4dfa614f76225c74ca218c98576d7bfc,
+        type: 2}
+      propertyPath: _spawnSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 84d7d622a8d4fe9409e87d2025245671, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dfa614f76225c74ca218c98576d7bfc, type: 2}
   m_IsPrefabAsset: 0

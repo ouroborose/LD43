@@ -10,7 +10,8 @@ public class Hut : BasePowerUp
     public override void HandleCollection(BasePerson collector)
     {
         base.HandleCollection(collector);
-        
+
+        AudioManager.Instance.PlayOneShot(Main.Instance._spawnSound);
         for(int i = 0; i < _numPeopleToSpawn; ++i)
         {
             SpawnPersonAround(transform.position);

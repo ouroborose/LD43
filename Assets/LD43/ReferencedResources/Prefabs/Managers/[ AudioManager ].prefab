@@ -110,7 +110,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -204,11 +204,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 53aabf3d144c7324582e6249e0262c00, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -303,4 +303,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sfx: {fileID: 82495496671678978}
   _defaultClickVolume: 1
-  _confirmSFX: {fileID: 0}
+  _confirmSFX: {fileID: 8300000, guid: 5a6e6f206b2bae64da309d02af87b36d, type: 3}
