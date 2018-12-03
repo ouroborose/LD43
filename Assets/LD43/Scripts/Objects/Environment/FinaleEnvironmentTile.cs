@@ -12,6 +12,8 @@ public class FinaleEnvironmentTile : BaseEnvironmentTile {
 
     public TextMeshPro _text;
 
+    public AudioClip _winTheme;
+
     protected override void Init()
     {
         base.Init();
@@ -41,6 +43,8 @@ public class FinaleEnvironmentTile : BaseEnvironmentTile {
 
     protected IEnumerator HandleFinale()
     {
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlayOneShot(_winTheme);
         yield return new WaitForSeconds(1.0f);
 
         yield return StartCoroutine(ShowText("You have reached the end..."));
