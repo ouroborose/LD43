@@ -25,6 +25,12 @@ public class HudUI : BaseUI {
         _progress = progressPercent;
     }
 
+    public override void Show(bool instant = false)
+    {
+        base.Show(instant);
+        OnProgress(EnvironmentManager.Instance._progress);
+    }
+
     protected void Update()
     {
         _progressIndicator.value = Mathf.Lerp(_progressIndicator.value, _progress, Time.deltaTime);

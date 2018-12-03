@@ -22,6 +22,8 @@ public class Main : BaseMain<Main>
     public Color _candidateColor = Color.cyan;
     public Color _movmentColor = Color.green;
 
+    public Transform _destructionRocks;
+
     public TextMeshPro _instructionText;
     protected float _instructionTextTimer = 0.0f;
 
@@ -149,6 +151,7 @@ public class Main : BaseMain<Main>
     {
         _gamePhase = GamePhase.Finale;
         _sacrificeCount = 0;
+        _destructionRocks.DOMoveY(-100, 1.0f, true).SetEase(Ease.InBack);
         EventManager.OnFinale.Dispatch();
     }
 
@@ -226,6 +229,7 @@ public class Main : BaseMain<Main>
             if(!_firstClickCompleted)
             {
                 _firstClickCompleted = true;
+                _destructionRocks.DOMoveY(0, 1.0f, true).SetEase(Ease.OutBack);
             }
             _movementLine.gameObject.SetActive(true);
         }
