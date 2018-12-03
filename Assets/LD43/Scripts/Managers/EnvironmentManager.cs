@@ -58,6 +58,7 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
     public void SpawnEndTile()
     {
         _endSpawned = true;
+        AddTile(_environmentData._emptyTilePrefab);
         BaseEnvironmentTile end = AddTile(_environmentData._endTilePrefab);
         _scrollThreshold = _scrollParent.transform.localPosition.y - end.transform.position.y + 600;
     }
