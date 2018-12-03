@@ -35,12 +35,4 @@ public class BasePerson : BaseActor {
         _selectionIndicator._line.sortingOrder = _sprite.sortingOrder - 1;
         _shadow.sortingOrder = BaseEnvironmentTile.ENVIRONMENT_SORT_ORDER + 1;
     }
-    
-
-    protected override void Die()
-    {
-        transform.parent = EnvironmentManager.Instance._scrollParent;
-        Destroy(_rigidbody);
-        transform.DOScale(0, 1.0f).OnComplete(base.Die);
-    }
 }

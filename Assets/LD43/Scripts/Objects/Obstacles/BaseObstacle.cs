@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class BaseObstacle : BaseObject {
 
     public bool _kills = false;
+    public bool _doShrinkingDeath = true;
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
@@ -26,6 +28,15 @@ public class BaseObstacle : BaseObject {
 
     protected virtual void Kill(BasePerson person)
     {
-        person.TriggerDeath();
+        Destroy(person._rigidbody);
+        person.transform.parent = EnvironmentManager.Instance._scrollParent;
+        if(_doShrinkingDeath)
+        {
+            person.transform.DOScale(0, 1.0f).OnComplete(person.TriggerDeath);
+        }
+        else
+        {
+            person.TriggerDeath();
+        }
     }
 }

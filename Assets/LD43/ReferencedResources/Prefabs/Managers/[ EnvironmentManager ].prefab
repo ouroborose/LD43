@@ -455,6 +455,9 @@ MonoBehaviour:
   _environmentData: {fileID: 11400000, guid: ec26e8e0210256d41a5283914037927d, type: 2}
   _scrollParent: {fileID: 4349215289782574}
   _scrollSpeed: 80
+  _tilesSpawned: 0
+  _endSpawned: 0
+  _endReached: 0
   _initialTiles:
   - {fileID: 1242893217923158, guid: c359e4fcad252c343aceaee493739e7a, type: 2}
   - {fileID: 1242893217923158, guid: c359e4fcad252c343aceaee493739e7a, type: 2}
@@ -476,6 +479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprite: {fileID: 0}
   _kills: 1
+  _doShrinkingDeath: 1
 --- !u!114 &114725348671780970
 MonoBehaviour:
   m_ObjectHideFlags: 1
