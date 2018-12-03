@@ -5,6 +5,11 @@ using TMPro;
 
 public class FinaleEnvironmentTile : BaseEnvironmentTile {
     public GameObject _blocker;
+    public BaseObject _leftBlocker;
+    public BaseObject _rightBlocker;
+
+    public float _gateOpeningTime = 3.0f;
+
     public TextMeshPro _text;
 
     protected override void Init()
@@ -41,8 +46,27 @@ public class FinaleEnvironmentTile : BaseEnvironmentTile {
         yield return StartCoroutine(ShowText("You have reached the end..."));
         yield return new WaitForSeconds(3.0f);
         yield return StartCoroutine(ShowText("It is time for the final sacrifice!"));
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(0.5f);
         _blocker.SetActive(false);
+
+        float timer = 0.0f;
+        float gateMoveDist = 100;
+        Vector3 leftStart = _leftBlocker.transform.localPosition;
+        Vector3 rightStart = _rightBlocker.transform.localPosition;
+        while(timer < _gateOpeningTime)
+        {
+            yield return new WaitForEndOfFrame();
+
+            timer += Time.deltaTime;
+            float t = timer / _gateOpeningTime;
+            _leftBlocker.transform.localPosition = leftStart + gateMoveDist * t * Vector3.left;
+            _leftBlocker._sprite.transform.localPosition = Random.insideUnitCircle * 2.5f;
+            _rightBlocker.transform.localPosition = rightStart + gateMoveDist * t * Vector3.right;
+            _rightBlocker._sprite.transform.localPosition = Random.insideUnitCircle * 2.5f;
+        }
+
+        _leftBlocker._sprite.transform.localPosition = Vector3.zero;
+        _rightBlocker._sprite.transform.localPosition = Vector3.zero;
     }
 
     protected IEnumerator ShowText(string text)
