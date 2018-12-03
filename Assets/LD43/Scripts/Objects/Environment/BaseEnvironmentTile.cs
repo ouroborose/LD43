@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseEnvironmentTile : BaseObject {
-
+    public const int ENVIRONMENT_SORT_ORDER = -32768;
     public const float SPRITE_ASSET_SCALE_ADJUSTOR = 2.0f;
 
     public GameObject[] _obstaclePrefabs;
@@ -16,7 +16,7 @@ public class BaseEnvironmentTile : BaseObject {
     protected override void UpdateSortingOrder()
     {
         //base.UpdateSortingOrder();
-        _sprite.sortingOrder = -32768;
+        _sprite.sortingOrder = ENVIRONMENT_SORT_ORDER;
     }
 
     protected override void Init()

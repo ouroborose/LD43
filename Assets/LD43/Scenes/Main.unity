@@ -152,15 +152,30 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114225495734800514, guid: f1eb91dced94a5745ba80f81ba5bf9d1,
+    - target: {fileID: 33139301537823212, guid: f1eb91dced94a5745ba80f81ba5bf9d1,
         type: 2}
-      propertyPath: _initialTiles.Array.data[0]
+      propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1067279995889260, guid: 56b959af1706fb74a95dbcd8ec809612,
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725348671780970, guid: f1eb91dced94a5745ba80f81ba5bf9d1,
         type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114725348671780970, guid: f1eb91dced94a5745ba80f81ba5bf9d1,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1eb91dced94a5745ba80f81ba5bf9d1, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &755420252 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114725348671780970, guid: f1eb91dced94a5745ba80f81ba5bf9d1,
+    type: 2}
+  m_PrefabInternal: {fileID: 630692287}
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
 --- !u!1001 &1521427542
 Prefab:
   m_ObjectHideFlags: 0
@@ -284,6 +299,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114923259405357810, guid: 4dfa614f76225c74ca218c98576d7bfc,
+        type: 2}
+      propertyPath: _instructionText
+      value: 
+      objectReference: {fileID: 755420252}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dfa614f76225c74ca218c98576d7bfc, type: 2}
   m_IsPrefabAsset: 0

@@ -16,25 +16,16 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
     public BaseEnvironmentTile _lastTile;
 
     protected float _scrollThreshold;
+    
 
-    protected override void Awake()
+    public void Init()
     {
-        base.Awake();
         for (int i = 0; i < _initialTiles.Count; ++i)
         {
             AddTile(_initialTiles[i]);
         }
 
         _scrollThreshold = -_tiles[0]._height * 2;
-    }
-
-    protected void Update()
-    {
-
-        if(Main.Instance._gamePhase == Main.GamePhase.Game)
-        {
-            UpdateEnvironmentScrolling();
-        }
     }
 
     protected void AddTile(GameObject prefab)
@@ -64,7 +55,7 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
         }
     }
 
-    protected void UpdateEnvironmentScrolling()
+    public void UpdateEnvironmentScrolling()
     {
         float scrollDelta = Time.deltaTime * _scrollSpeed;
         Vector3 scrollPos = _scrollParent.localPosition;

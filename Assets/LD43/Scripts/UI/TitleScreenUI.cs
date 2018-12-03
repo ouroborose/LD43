@@ -24,7 +24,12 @@ public class TitleScreenUI : BaseUI
     {
         Hide();
         AudioManager.Instance.PlayDefaultClickSound();
+        UIManager.Instance.StartCoroutine(HandleStart());
+    }
 
+    protected IEnumerator HandleStart()
+    {
+        yield return new WaitForSeconds(_transitionOutDelay + _transitionOutTime + 0.1f);
         EventManager.OnStartGame.Dispatch();
     }
 }

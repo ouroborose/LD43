@@ -52,3 +52,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _titleScreen: {fileID: 0}
+  _winScreen: {fileID: 0}
+  _loseScreen: {fileID: 0}

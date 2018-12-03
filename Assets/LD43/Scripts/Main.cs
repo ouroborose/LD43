@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VuLib;
 using DG.Tweening;
+using TMPro;
 
 public class Main : BaseMain<Main>
 {
@@ -21,6 +21,9 @@ public class Main : BaseMain<Main>
     public Color _candidateColor = Color.cyan;
     public Color _movmentColor = Color.green;
 
+    public TextMeshPro _instructionText;
+    protected float _instructionTextTimer = 0.0f;
+
     protected List<BasePerson> _people = new List<BasePerson>();
     protected List<BasePerson> _selectedPeople = new List<BasePerson>();
 
@@ -28,6 +31,7 @@ public class Main : BaseMain<Main>
     protected Plane _groundPlane;
 
     protected Vector3 _mouseWorldPos;
+    protected bool _firstClickCompleted = false;
 
     public enum GamePhase
     {
@@ -48,14 +52,9 @@ public class Main : BaseMain<Main>
         _mainCamera = Camera.main;
         _groundPlane = new Plane(Vector3.forward, Vector3.zero);
         _selectionIndicator.gameObject.SetActive(false);
+        _instructionText.alpha = 0.0f;
 
         EventManager.OnStartGame.Register(OnGameStart);
-    }
-
-    protected void OnGameStart()
-    {
-        _gamePhase = GamePhase.Game;
-        _selectionIndicator.gameObject.SetActive(true);
     }
 
     protected override void OnDestroy()
@@ -67,7 +66,6 @@ public class Main : BaseMain<Main>
     public override void Start()
     {
         base.Start();
-
         InitGame();
     }
     
@@ -76,20 +74,74 @@ public class Main : BaseMain<Main>
     {
         base.Update();
 
-        if(_gamePhase == GamePhase.Game)
+        switch(_gamePhase)
         {
-            UpdatePlayerControls();
+            case GamePhase.Game:
+                UpdatePlayerControls();
+                if(_firstClickCompleted)
+                {
+                    EnvironmentManager.Instance.UpdateEnvironmentScrolling();
+                }
+
+                if (_instructionText != null)
+                {
+                    if(_firstClickCompleted)
+                    {
+                        _instructionText.alpha = Mathf.Lerp(_instructionText.alpha, 0.0f, Time.deltaTime * 2.0f);
+                    }
+                    else
+                    {
+                        _instructionTextTimer += Time.deltaTime;
+                        _instructionText.alpha = Mathf.Abs(Mathf.Sin(_instructionTextTimer));
+                    }
+                }
+
+                if(_people.Count <= 0)
+                {
+                    TriggerLose();
+                }
+                break;
+            case GamePhase.Lose:
+                HideMovementLine();
+                break;
+            case GamePhase.Win:
+                HideMovementLine();
+                break;
         }
     }
 
 
     protected void InitGame()
     {
+        EnvironmentManager.Instance.Init();
+
         // spawn people
-        for(int i = 0; i < _numStartingPeople; ++i)
+        for (int i = 0; i < _numStartingPeople; ++i)
         {
-            SpawnPerson(new Vector3(UnityEngine.Random.Range(-100, 100), UnityEngine.Random.Range(250, 350), 0));
+            SpawnPerson(new Vector3(Random.Range(-100, 100), Random.Range(250, 350), 0));
         }
+    }
+
+    protected void OnGameStart()
+    {
+        _gamePhase = GamePhase.Game;
+        _selectionIndicator.gameObject.SetActive(true);
+        _selectionIndicator.transform.localScale = Vector3.zero;
+        StopPeopleMovement();
+    }
+
+    protected void TriggerLose()
+    {
+        _gamePhase = GamePhase.Lose;
+        StartPeopleMovement();
+        EventManager.OnLoseGame.Dispatch();
+    }
+
+    protected void TriggerWin()
+    {
+        _gamePhase = GamePhase.Win;
+        StartPeopleMovement();
+        EventManager.OnWinGame.Dispatch();
     }
 
     protected void UpdatePlayerControls()
@@ -148,22 +200,28 @@ public class Main : BaseMain<Main>
 
         if(_selectedPeople.Count > 0)
         {
+            if(!_firstClickCompleted)
+            {
+                _firstClickCompleted = true;
+            }
             _movementLine.gameObject.SetActive(true);
         }
+
+        _selectionIndicator.transform.DOScale(0.0f, 0.33f).SetEase(Ease.InBack);
     }
 
     protected void StopPeopleMovement()
     {
-        
         for (int i = 0; i < _selectedPeople.Count; ++i)
         {
             _selectedPeople[i].Stop();
         }
+
+        _selectionIndicator.transform.DOScale(1.0f, 0.33f).SetEase(Ease.OutBack);
     }
     
     protected void UpdatePeopleMovement()
     {
-
         if (_selectedPeople.Count <= 0)
         {
             return;
@@ -197,8 +255,7 @@ public class Main : BaseMain<Main>
         // handle people selection
         _selectionRadius = Mathf.Clamp(_selectionRadius + Input.mouseScrollDelta.y * _radiusChangeDelta, _minSelectionRadius, _maxSelectionRadius);
         _selectionIndicator._radius = _selectionRadius;
-
-
+        
         _selectedPeople.Clear();
         float sqrSelectionRadius = _selectionRadius * _selectionRadius;
         for (int i = 0; i < _people.Count; ++i)
@@ -226,12 +283,17 @@ public class Main : BaseMain<Main>
             }
         }
 
-        if(_movementLine.gameObject.activeSelf)
+        HideMovementLine();
+    }
+
+    protected void HideMovementLine()
+    {
+        if (_movementLine.gameObject.activeSelf)
         {
             Vector3 head = _movementLine.GetPosition(0);
             Vector3 tail = _movementLine.GetPosition(1);
             _movementLine.SetPosition(1, Vector3.Lerp(tail, head, Time.deltaTime * 10.0f));
-            if(Vector3.SqrMagnitude(head-tail) < 1f)
+            if (Vector3.SqrMagnitude(head - tail) < 1f)
             {
                 _movementLine.gameObject.SetActive(false);
             }

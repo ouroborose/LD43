@@ -27,6 +27,6 @@ public class Hut : BasePowerUp
         
         person.transform.localScale = Vector3.zero;
         person.transform.DOScale(1, 1.0f).SetEase(Ease.OutBack).SetDelay(0.25f);
-        person._rigidbody.velocity = dir * person._maxSpeed; 
+        person._rigidbody.velocity = dir * person._maxSpeed * 0.75f; 
     }
 }
