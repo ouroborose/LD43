@@ -820,16 +820,6 @@ Prefab:
       propertyPath: _fader
       value: 
       objectReference: {fileID: 1588124113}
-    - target: {fileID: 114813772621669582, guid: 80e3d683f66f9534eb3a66cdd49f2e1e,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114813772621669582, guid: 80e3d683f66f9534eb3a66cdd49f2e1e,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114214733899604972, guid: 80e3d683f66f9534eb3a66cdd49f2e1e,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -840,8 +830,14 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1712731354982068, guid: 80e3d683f66f9534eb3a66cdd49f2e1e, type: 2}
-      propertyPath: m_IsActive
+    - target: {fileID: 114813772621669582, guid: 80e3d683f66f9534eb3a66cdd49f2e1e,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813772621669582, guid: 80e3d683f66f9534eb3a66cdd49f2e1e,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1021,22 +1017,22 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114209988621498494, guid: 045624452d602a744834b8912773d166,
+    - target: {fileID: 114824837799833188, guid: 045624452d602a744834b8912773d166,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114209988621498494, guid: 045624452d602a744834b8912773d166,
+    - target: {fileID: 114824837799833188, guid: 045624452d602a744834b8912773d166,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114824837799833188, guid: 045624452d602a744834b8912773d166,
+    - target: {fileID: 114209988621498494, guid: 045624452d602a744834b8912773d166,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114824837799833188, guid: 045624452d602a744834b8912773d166,
+    - target: {fileID: 114209988621498494, guid: 045624452d602a744834b8912773d166,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1

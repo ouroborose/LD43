@@ -384,7 +384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transitionInDown: 1
   _transitionInTime: 0.66
-  _transitionInDelay: 0.5
+  _transitionInDelay: 2
   _transitionInEase: 4
   _transitionOutDown: 0
   _transitionOutTime: 0.66

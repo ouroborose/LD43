@@ -22,6 +22,7 @@ public class UIManager : Singleton<UIManager> {
         base.Awake();
 
         EventManager.OnStartGame.Register(OnGameStart);
+        EventManager.OnFinale.Register(OnFinale);
         EventManager.OnLoseGame.Register(OnLoseGame);
         EventManager.OnWinGame.Register(OnWinGame);
     }
@@ -29,6 +30,11 @@ public class UIManager : Singleton<UIManager> {
     private void OnGameStart()
     {
         _hudScreen.Show();
+    }
+
+    private void OnFinale()
+    {
+        _hudScreen.Hide();
     }
 
     private void OnWinGame()
@@ -48,6 +54,7 @@ public class UIManager : Singleton<UIManager> {
         if(Instance == this)
         {
             EventManager.OnStartGame.Unregister(OnGameStart);
+            EventManager.OnFinale.Unregister(OnFinale);
             EventManager.OnLoseGame.Unregister(OnLoseGame);
             EventManager.OnWinGame.Unregister(OnWinGame);
         }
