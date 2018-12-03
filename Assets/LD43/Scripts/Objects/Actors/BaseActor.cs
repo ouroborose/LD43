@@ -49,7 +49,11 @@ public class BaseActor : BaseObject {
         Vector3 vel = _rigidbody.velocity;
 
         Debug.DrawRay(transform.position, vel);
-
-        _rigidbody.velocity = Vector3.Lerp(vel, _movementDir * _maxSpeed, Time.deltaTime * ((_movementDir == Vector3.zero)?_stoppingForce:_movementForce));
+        Vector3 goalVel = _movementDir * _maxSpeed;
+        if(goalVel.y < 0)
+        {
+            goalVel.y *= 2.0f; // double speed to account for background scrolling when moving backwards
+        }
+        _rigidbody.velocity = Vector3.Lerp(vel, goalVel, Time.deltaTime * ((_movementDir == Vector3.zero)?_stoppingForce:_movementForce));
     }
 }

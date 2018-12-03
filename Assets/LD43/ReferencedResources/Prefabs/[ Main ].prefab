@@ -168,6 +168,7 @@ MonoBehaviour:
   _movementLine: {fileID: 120089672629113676}
   _candidateColor: {r: 0, g: 1, b: 1, a: 1}
   _movmentColor: {r: 0, g: 1, b: 0, a: 1}
+  _gamePhase: 0
 --- !u!120 &120089672629113676
 LineRenderer:
   m_ObjectHideFlags: 1

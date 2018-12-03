@@ -8,13 +8,24 @@ public class BaseObstacle : BaseObject {
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if(_kills)
+        if (collision.attachedRigidbody == null)
+        {
+            return;
+        }
+
+        if (_kills)
         {
             BasePerson person = collision.attachedRigidbody.GetComponent<BasePerson>();
             if(person != null)
             {
-                person.TriggerDeath();
+                Main.Instance.RemovePerson(person);
+                Kill(person);
             }
         }
+    }
+
+    protected virtual void Kill(BasePerson person)
+    {
+        person.TriggerDeath();
     }
 }

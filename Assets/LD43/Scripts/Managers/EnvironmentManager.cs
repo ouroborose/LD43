@@ -9,26 +9,20 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
     public Transform _scrollParent;
 
     public float _scrollSpeed;
-    public int _numActiveTiles = 10;
 
-    protected List<BaseEnvironmentTile> _tiles = new List<BaseEnvironmentTile>();
-    protected BaseEnvironmentTile _lastTile;
+    public List<GameObject> _initialTiles;
+
+    public List<BaseEnvironmentTile> _tiles = new List<BaseEnvironmentTile>();
+    public BaseEnvironmentTile _lastTile;
 
     protected float _scrollThreshold;
 
     protected override void Awake()
     {
         base.Awake();
-        for (int i = 0; i < _numActiveTiles; ++i)
+        for (int i = 0; i < _initialTiles.Count; ++i)
         {
-            if(i < 2)
-            {
-                AddTile(_environmentData._emptyTilePrefab);
-            }
-            else
-            {
-                AddRandomTile();
-            }
+            AddTile(_initialTiles[i]);
         }
 
         _scrollThreshold = -_tiles[0]._height * 2;
@@ -36,7 +30,11 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
 
     protected void Update()
     {
-        UpdateEnvironmentScrolling();
+
+        if(Main.Instance._gamePhase == Main.GamePhase.Game)
+        {
+            UpdateEnvironmentScrolling();
+        }
     }
 
     protected void AddTile(GameObject prefab)
@@ -56,7 +54,14 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
 
     protected void AddRandomTile()
     {
-        AddTile(_environmentData.GetRandomTilePrefab());
+        if(Main.Instance._gamePhase == Main.GamePhase.Game)
+        {
+            AddTile(_environmentData.GetRandomTilePrefab());
+        }
+        else
+        {
+            AddTile(_environmentData._emptyTilePrefab);
+        }
     }
 
     protected void UpdateEnvironmentScrolling()

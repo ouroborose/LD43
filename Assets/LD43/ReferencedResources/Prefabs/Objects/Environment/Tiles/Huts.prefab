@@ -9,17 +9,33 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1242893217923158}
+  m_RootGameObject: {fileID: 1067279995889260}
   m_IsPrefabAsset: 1
---- !u!1 &1150865465565184
+--- !u!1 &1067279995889260
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4525664632516298}
-  - component: {fileID: 212035252298048564}
+  - component: {fileID: 4291562525404012}
+  - component: {fileID: 114473442259311608}
+  m_Layer: 0
+  m_Name: Huts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1790624223703214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4098123932063990}
+  - component: {fileID: 212065017739464832}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -27,71 +43,55 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1242893217923158
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4199106526572792}
-  - component: {fileID: 114339177358421886}
-  m_Layer: 0
-  m_Name: RandomRocks
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4199106526572792
+--- !u!4 &4098123932063990
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1242893217923158}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4525664632516298}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4525664632516298
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1150865465565184}
+  m_GameObject: {fileID: 1790624223703214}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4199106526572792}
+  m_Father: {fileID: 4291562525404012}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114339177358421886
+--- !u!4 &4291562525404012
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1067279995889260}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4098123932063990}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114473442259311608
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1242893217923158}
+  m_GameObject: {fileID: 1067279995889260}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f663b2879a772424eab1cae13ecab761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 212035252298048564}
+  _sprite: {fileID: 212065017739464832}
   _obstaclePrefabs:
-  - {fileID: 1608453269813422, guid: 5d6c95d735b74734eb425d79c7792878, type: 2}
-  _minObstacles: 0
-  _maxObstacles: 5
---- !u!212 &212035252298048564
+  - {fileID: 1190131735540606, guid: e77f01704c9203440b0f6f96d21f840f, type: 2}
+  _minObstacles: 1
+  _maxObstacles: 3
+--- !u!212 &212065017739464832
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1150865465565184}
+  m_GameObject: {fileID: 1790624223703214}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

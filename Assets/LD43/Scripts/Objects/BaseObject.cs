@@ -8,7 +8,6 @@ public class BaseObject : BaseBehaviour<Main> {
     public SpriteRenderer _sprite;
     protected Color _originalColor;
 
-
     protected override void Init()
     {
         base.Init();

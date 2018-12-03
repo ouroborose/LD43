@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using VuLib;
+using DG.Tweening;
 
 public class Main : BaseMain<Main>
 {
@@ -26,12 +29,39 @@ public class Main : BaseMain<Main>
 
     protected Vector3 _mouseWorldPos;
 
+    public enum GamePhase
+    {
+        Title,
+        Game,
+        Win,
+        Lose,
+    }
+
+    public GamePhase _gamePhase = GamePhase.Title;
+
     protected override void Awake()
     {
         base.Awake();
 
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+
         _mainCamera = Camera.main;
         _groundPlane = new Plane(Vector3.forward, Vector3.zero);
+        _selectionIndicator.gameObject.SetActive(false);
+
+        EventManager.OnStartGame.Register(OnGameStart);
+    }
+
+    protected void OnGameStart()
+    {
+        _gamePhase = GamePhase.Game;
+        _selectionIndicator.gameObject.SetActive(true);
+    }
+
+    protected override void OnDestroy()
+    {
+        EventManager.OnStartGame.Unregister(OnGameStart);
+        base.OnDestroy();
     }
 
     public override void Start()
@@ -40,13 +70,16 @@ public class Main : BaseMain<Main>
 
         InitGame();
     }
-
+    
 
     public override void Update()
     {
         base.Update();
 
-        UpdatePlayerControls();
+        if(_gamePhase == GamePhase.Game)
+        {
+            UpdatePlayerControls();
+        }
     }
 
 
@@ -55,7 +88,7 @@ public class Main : BaseMain<Main>
         // spawn people
         for(int i = 0; i < _numStartingPeople; ++i)
         {
-            SpawnPerson(new Vector3(Random.Range(-100, 100), Random.Range(100, 200), 0));
+            SpawnPerson(new Vector3(UnityEngine.Random.Range(-100, 100), UnityEngine.Random.Range(250, 350), 0));
         }
     }
 
@@ -86,10 +119,8 @@ public class Main : BaseMain<Main>
             UpdatePeopleSelection();
         }
     }
-
-
-
-    protected void SpawnPerson(Vector3 pos)
+    
+    public BasePerson SpawnPerson(Vector3 pos)
     {
         GameObject personObj = Instantiate(_personPrefab, transform);
         BasePerson person = personObj.GetComponent<BasePerson>();
@@ -97,8 +128,16 @@ public class Main : BaseMain<Main>
 
         _people.Add(person);
         _selectedPeople.Add(person);
+        
+        return person;
     }
 
+
+    public void RemovePerson(BasePerson person)
+    {
+        _people.Remove(person);
+        _selectedPeople.Remove(person);
+    }
 
     protected void StartPeopleMovement()
     {

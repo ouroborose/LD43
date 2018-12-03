@@ -18,7 +18,7 @@ public class SelectionIndicator : MonoBehaviour {
     protected void Update()
     {
         SetRadius(_radius);
-        transform.Rotate(0, 0, _spinSpeed * Time.deltaTime);
+        transform.Rotate(0, 0, _spinSpeed * Time.unscaledDeltaTime);
     }
 
     public void SetRadius(float radius)
