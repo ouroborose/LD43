@@ -28,7 +28,10 @@ public class BaseObstacle : BaseObject {
 
     protected virtual void Kill(BasePerson person)
     {
-        Destroy(person._rigidbody);
+        person._colliderGroup.SetActive(false);
+        person._rigidbody.isKinematic = true;
+
+
         person.transform.parent = EnvironmentManager.Instance._scrollParent;
         if(_doShrinkingDeath)
         {

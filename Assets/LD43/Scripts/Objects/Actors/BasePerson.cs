@@ -11,6 +11,8 @@ public class BasePerson : BaseActor {
     public SelectionIndicator _selectionIndicator;
     public Animator _animator;
 
+    public GameObject _colliderGroup;
+
     protected override void Init()
     {
         base.Init();
