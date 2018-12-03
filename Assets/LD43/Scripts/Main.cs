@@ -24,6 +24,8 @@ public class Main : BaseMain<Main>
     public TextMeshPro _instructionText;
     protected float _instructionTextTimer = 0.0f;
 
+    public int _sacrificeCount = 0;
+
     protected List<BasePerson> _people = new List<BasePerson>();
     protected List<BasePerson> _selectedPeople = new List<BasePerson>();
 
@@ -108,6 +110,10 @@ public class Main : BaseMain<Main>
                 break;
             case GamePhase.Finale:
                 UpdatePlayerControls();
+                if(_people.Count <= 0)
+                {
+                    TriggerWin();
+                }
                 break;
             case GamePhase.Lose:
                 HideMovementLine();
@@ -141,6 +147,8 @@ public class Main : BaseMain<Main>
     protected void TriggerFinale()
     {
         _gamePhase = GamePhase.Finale;
+        _sacrificeCount = _people.Count;
+        EventManager.OnFinale.Dispatch();
     }
 
     protected void TriggerLose()
@@ -202,6 +210,7 @@ public class Main : BaseMain<Main>
     {
         _people.Remove(person);
         _selectedPeople.Remove(person);
+        _sacrificeCount++;
     }
 
     protected void StartPeopleMovement()

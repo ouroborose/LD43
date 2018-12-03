@@ -258,7 +258,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: You Win
+  m_text: "Congratulations!\n\n{0}\n\nSacrifices where made to the Great Deity. \n\nThe
+    world is safe for another {0} years."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4bc48d44f9e5b9943ac86b59a94afc05, type: 2}
   m_sharedMaterial: {fileID: 21255955215044210, guid: 4bc48d44f9e5b9943ac86b59a94afc05,
@@ -304,7 +305,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 101
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -327,12 +328,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114209988621498494}
-    characterCount: 7
+    characterCount: 107
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 20
+    wordCount: 17
     linkCount: 0
-    lineCount: 1
+    lineCount: 11
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -366,13 +367,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transitionInDown: 1
   _transitionInTime: 0.66
-  _transitionInDelay: 0
+  _transitionInDelay: 0.5
   _transitionInEase: 4
   _transitionOutDown: 0
   _transitionOutTime: 0.66
   _transitionOutDelay: 0
   _transitionOutEase: 4
   _originalY: 0
+  _text: {fileID: 114209988621498494}
   _fader: {fileID: 0}
 --- !u!114 &114517306233461924
 MonoBehaviour:
@@ -639,8 +641,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 10, y: -100}
+  m_SizeDelta: {x: -20, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224683075639418184
 RectTransform:

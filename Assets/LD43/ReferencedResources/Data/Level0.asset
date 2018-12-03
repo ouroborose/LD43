@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fd0e720d6427b45b79ef020d5a073a, type: 3}
   m_Name: Level0
   m_EditorClassIdentifier: 
-  _numTotalTiles: 5
+  _numTotalTiles: 10
   _emptyTilePrefab: {fileID: 1242893217923158, guid: c359e4fcad252c343aceaee493739e7a,
     type: 2}
   _endTilePrefab: {fileID: 1688179710282704, guid: 6709a82a9069a6145acd85fdf895ac1f,

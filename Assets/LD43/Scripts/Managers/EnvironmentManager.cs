@@ -26,7 +26,10 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
             AddTile(_initialTiles[i]);
         }
 
-        _scrollThreshold = -_tiles[0]._height * 2;
+        if(!_endSpawned)
+        {
+            _scrollThreshold = -_tiles[0]._height * 2;
+        }
     }
 
 
@@ -43,7 +46,7 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
         _lastTile = tile;
         _tiles.Add(tile);
 
-        if(_tilesSpawned < _environmentData._numTotalTiles)
+        if(!_endSpawned)
         {
             _tilesSpawned++;
             if(_tilesSpawned >= _environmentData._numTotalTiles)
@@ -60,7 +63,7 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
         _endSpawned = true;
         AddTile(_environmentData._emptyTilePrefab);
         BaseEnvironmentTile end = AddTile(_environmentData._endTilePrefab);
-        _scrollThreshold = _scrollParent.transform.localPosition.y - end.transform.position.y + 600;
+        _scrollThreshold = _scrollParent.transform.localPosition.y - end.transform.position.y + (600 - end._height);
     }
 
 
@@ -96,7 +99,11 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
                 Destroy(firstTile.gameObject);
 
                 AddRandomTile();
-                _scrollThreshold -= _tiles[0]._height;
+                if(!_endSpawned)
+                {
+                    _scrollThreshold -= _tiles[0]._height;
+                }
+                
             }
         }
 
