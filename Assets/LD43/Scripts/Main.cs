@@ -147,7 +147,7 @@ public class Main : BaseMain<Main>
     protected void TriggerFinale()
     {
         _gamePhase = GamePhase.Finale;
-        _sacrificeCount = _people.Count;
+        _sacrificeCount = 0;
         EventManager.OnFinale.Dispatch();
     }
 
