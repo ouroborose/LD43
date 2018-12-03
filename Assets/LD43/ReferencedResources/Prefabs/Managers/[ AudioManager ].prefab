@@ -302,5 +302,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sfx: {fileID: 82495496671678978}
+  _bgm: {fileID: 82793864498441758}
   _defaultClickVolume: 1
   _confirmSFX: {fileID: 8300000, guid: 5a6e6f206b2bae64da309d02af87b36d, type: 3}
