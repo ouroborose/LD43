@@ -164,11 +164,13 @@ MonoBehaviour:
   _radiusChangeDelta: 5
   _minSelectionRadius: 10
   _maxSelectionRadius: 100
+  _speedMultiplierDist: 50
   _selectionIndicator: {fileID: 114182653675658734}
   _movementLine: {fileID: 120089672629113676}
   _candidateColor: {r: 0, g: 1, b: 1, a: 1}
   _movmentColor: {r: 0, g: 1, b: 0, a: 1}
   _instructionText: {fileID: 0}
+  _sacrificeCount: 0
   _gamePhase: 0
 --- !u!120 &120089672629113676
 LineRenderer:

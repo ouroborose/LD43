@@ -11,6 +11,7 @@ public class BaseActor : BaseObject {
     public float _stoppingForce = 1.0f;
     protected Vector3 _movementDir;
 
+    protected float _speedMultiplier = 1.0f;
 
     protected override void Init()
     {
@@ -28,15 +29,17 @@ public class BaseActor : BaseObject {
         UpdateMovement();
     }
 
-    public void MoveTowards(Vector3 pos)
+    public void MoveTowards(Vector3 pos, float speedMultiplier = 1.0f)
     {
         _movementDir = pos - transform.position;
         _movementDir.Normalize();
+        _speedMultiplier = speedMultiplier;
     }
 
     public void Stop()
     {
         _movementDir = Vector3.zero;
+        _speedMultiplier = 1.0f;
     }
 
     public void UpdateMovement()
@@ -49,7 +52,7 @@ public class BaseActor : BaseObject {
         Vector3 vel = _rigidbody.velocity;
 
         Debug.DrawRay(transform.position, vel);
-        Vector3 goalVel = _movementDir * _maxSpeed;
+        Vector3 goalVel = _movementDir * _maxSpeed * _speedMultiplier;
         if(goalVel.y < 0)
         {
             goalVel.y *= 2.0f; // double speed to account for background scrolling when moving backwards

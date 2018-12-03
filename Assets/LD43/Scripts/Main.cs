@@ -15,6 +15,7 @@ public class Main : BaseMain<Main>
     public float _radiusChangeDelta = 5.0f;
     public float _minSelectionRadius = 20.0f;
     public float _maxSelectionRadius = 100.0f;
+    public float _speedMultiplierDist = 100.0f;
     public SelectionIndicator _selectionIndicator;
     public LineRenderer _movementLine;
 
@@ -253,13 +254,17 @@ public class Main : BaseMain<Main>
         int livingCount = 0;
         for (int i = 0; i < _selectedPeople.Count; ++i)
         {
-            if(!_selectedPeople[i]._isAlive)
+            BasePerson person = _selectedPeople[i];
+            if(!person._isAlive)
             {
                 continue;
             }
 
-            _selectedPeople[i].MoveTowards(_mouseWorldPos);
-            center += _selectedPeople[i].transform.position;
+            float dist = Vector3.Distance(person.transform.position, _mouseWorldPos);
+            float speedMultiplier = Mathf.Max(0.5f, dist / _speedMultiplierDist);
+
+            person.MoveTowards(_mouseWorldPos, speedMultiplier);
+            center += person.transform.position;
             livingCount++;
         }
 
