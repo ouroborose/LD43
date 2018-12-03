@@ -497,7 +497,7 @@ MonoBehaviour:
   m_text: 'Game Over
 
 
-    {0}
+    <color=red>{0}</color>
 
 
     Sacrifices were made in vain!'
