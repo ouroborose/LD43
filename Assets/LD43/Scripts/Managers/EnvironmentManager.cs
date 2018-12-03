@@ -7,17 +7,19 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
     public EnvironmentData _environmentData;
     public Transform _scrollParent;
     public float _scrollSpeed;
+    public float _maxScrollSpeedScale = 1.0f;
     public int _tilesSpawned = 0;
     public bool _endSpawned = false;
     public bool _endReached = false;
-    
+
+    public float _progress = 0.0f;
+
     public List<GameObject> _initialTiles;
 
     public List<BaseEnvironmentTile> _tiles = new List<BaseEnvironmentTile>();
     public BaseEnvironmentTile _lastTile;
 
     protected float _scrollThreshold;
-
 
     public void Init()
     {
@@ -49,6 +51,8 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
         if(!_endSpawned)
         {
             _tilesSpawned++;
+            _progress = Mathf.Clamp01((float)_tilesSpawned / _environmentData._numTotalTiles);
+            EventManager.OnProgress.Dispatch(_progress);
             if(_tilesSpawned >= _environmentData._numTotalTiles)
             {
                 SpawnEndTile();
@@ -81,7 +85,10 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
 
     public void UpdateEnvironmentScrolling()
     {
-        float scrollDelta = Time.deltaTime * _scrollSpeed;
+        float scrollSpeed = _scrollSpeed;
+        scrollSpeed += _scrollSpeed * _maxScrollSpeedScale * _progress;
+
+        float scrollDelta = Time.deltaTime * scrollSpeed;
         Vector3 scrollPos = _scrollParent.localPosition;
         scrollPos.y -= scrollDelta;
 

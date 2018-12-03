@@ -200,7 +200,7 @@ public class Main : BaseMain<Main>
         person.transform.position = pos;
 
         _people.Add(person);
-        _selectedPeople.Add(person);
+        //_selectedPeople.Add(person);
         
         return person;
     }
