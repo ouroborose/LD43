@@ -37,6 +37,7 @@ public class Main : BaseMain<Main>
     {
         Title,
         Game,
+        Finale,
         Win,
         Lose,
     }
@@ -100,6 +101,13 @@ public class Main : BaseMain<Main>
                 {
                     TriggerLose();
                 }
+                else if(EnvironmentManager.Instance._endReached)
+                {
+                    TriggerFinale();
+                }
+                break;
+            case GamePhase.Finale:
+                UpdatePlayerControls();
                 break;
             case GamePhase.Lose:
                 HideMovementLine();
@@ -128,6 +136,11 @@ public class Main : BaseMain<Main>
         _selectionIndicator.gameObject.SetActive(true);
         _selectionIndicator.transform.localScale = Vector3.zero;
         StopPeopleMovement();
+    }
+
+    protected void TriggerFinale()
+    {
+        _gamePhase = GamePhase.Finale;
     }
 
     protected void TriggerLose()

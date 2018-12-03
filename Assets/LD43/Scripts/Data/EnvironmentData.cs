@@ -12,7 +12,10 @@ public class EnvironmentData : ScriptableObject {
         public GameObject _prefab;
     }
 
+    public int _numTotalTiles = 10;
+
     public GameObject _emptyTilePrefab;
+    public GameObject _endTilePrefab;
     public EnvironmentTileData[] _tileData;
 
     public GameObject GetRandomTilePrefab()

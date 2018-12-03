@@ -5,18 +5,19 @@ using VuLib;
 
 public class EnvironmentManager : Singleton<EnvironmentManager> {
     public EnvironmentData _environmentData;
-
     public Transform _scrollParent;
-
     public float _scrollSpeed;
-
+    public int _tilesSpawned = 0;
+    public bool _endSpawned = false;
+    public bool _endReached = false;
+    
     public List<GameObject> _initialTiles;
 
     public List<BaseEnvironmentTile> _tiles = new List<BaseEnvironmentTile>();
     public BaseEnvironmentTile _lastTile;
 
     protected float _scrollThreshold;
-    
+
 
     public void Init()
     {
@@ -28,7 +29,8 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
         _scrollThreshold = -_tiles[0]._height * 2;
     }
 
-    protected void AddTile(GameObject prefab)
+
+    protected BaseEnvironmentTile AddTile(GameObject prefab)
     {
         GameObject tileObj = Instantiate(prefab, _scrollParent);
         BaseEnvironmentTile tile = tileObj.GetComponent<BaseEnvironmentTile>();
@@ -40,6 +42,24 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
 
         _lastTile = tile;
         _tiles.Add(tile);
+
+        if(_tilesSpawned < _environmentData._numTotalTiles)
+        {
+            _tilesSpawned++;
+            if(_tilesSpawned >= _environmentData._numTotalTiles)
+            {
+                SpawnEndTile();
+            }
+        }
+
+        return tile;
+    }
+
+    public void SpawnEndTile()
+    {
+        _endSpawned = true;
+        BaseEnvironmentTile end = AddTile(_environmentData._endTilePrefab);
+        _scrollThreshold = _scrollParent.transform.localPosition.y - end.transform.position.y + 600;
     }
 
 
@@ -63,12 +83,20 @@ public class EnvironmentManager : Singleton<EnvironmentManager> {
 
         if (scrollPos.y < _scrollThreshold)
         {
-            BaseEnvironmentTile firstTile = _tiles[0];
-            _tiles.Remove(firstTile);
-            Destroy(firstTile.gameObject);
+            if(_endSpawned)
+            {
+                scrollPos.y = _scrollThreshold;
+                _endReached = true;
+            }
+            else
+            {
+                BaseEnvironmentTile firstTile = _tiles[0];
+                _tiles.Remove(firstTile);
+                Destroy(firstTile.gameObject);
 
-            AddRandomTile();
-            _scrollThreshold -= _tiles[0]._height;
+                AddRandomTile();
+                _scrollThreshold -= _tiles[0]._height;
+            }
         }
 
         _scrollParent.localPosition = scrollPos;
